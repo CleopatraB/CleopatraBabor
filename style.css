@@ -5,20 +5,21 @@ body {
 }
 
 header {
-    background: #222;
+    background: #0a7d32; /* green heading */
     color: white;
     padding: 20px;
     text-align: center;
 }
 
 nav a {
-    color: #ddd;
+    color: white;
     margin: 0 15px;
     text-decoration: none;
+    font-weight: bold;
 }
 
 nav a:hover {
-    color: white;
+    text-decoration: underline;
 }
 
 section {

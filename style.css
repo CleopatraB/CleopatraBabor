@@ -1,18 +1,18 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background: #f4f4f4;
+    background: #E3D4D1;
 }
 
 header {
-    background: #0a7d32; /* green heading */
-    color: white;
+    background: #478F6C; /* green heading */
+    color: Black;
     padding: 20px;
     text-align: center;
 }
 
 nav a {
-    color: white;
+    color: black;
     margin: 0 15px;
     text-decoration: none;
     font-weight: bold;
@@ -24,7 +24,7 @@ nav a:hover {
 
 section {
     padding: 40px;
-    background: white;
+    background: black;
     margin: 20px auto;
     width: 80%;
     border-radius: 8px;

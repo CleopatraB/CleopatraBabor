@@ -29,3 +29,9 @@ section {
     width: 80%;
     border-radius: 8px;
 }
+.footer-centered__social i {
+    font-size: 28px;
+    color: #0A66C2; /* LinkedIn blue */
+    transition: color 0.3s ease;
+}
+

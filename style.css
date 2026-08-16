@@ -1,37 +1,447 @@
+/* ===========================================================
+   Cleopatra Babor — Site Stylesheet
+   Design system: herbarium / botanical field-notebook
+   =========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --paper: #f4f2e8;
+  --paper-deep: #ece8d8;
+  --ink: #1d2019;
+  --ink-soft: #46493e;
+  --forest: #223c2f;
+  --forest-deep: #16281f;
+  --moss: #57734f;
+  --gold: #a9812f;
+  --gold-soft: #cba75c;
+  --rule: #d7d1bb;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Inter", -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --max-width: 880px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #E3D4D1;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-header {
-    background: #628A77; /* green heading */
-    color: Black;
-    padding: 20px;
-    text-align: center;
+/* Background texture: faint paper grain via layered gradient */
+body {
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(34,60,47,0.035), transparent 45%),
+    radial-gradient(circle at 85% 40%, rgba(169,129,47,0.05), transparent 50%);
+  background-attachment: fixed;
 }
 
-nav a {
-    color: black;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
+a { color: inherit; }
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 28px;
 }
 
-nav a:hover {
-    text-decoration: underline;
+/* ---------- Header / Nav ---------- */
+header.site-header {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(6px);
 }
 
-section {
-    padding: 40px;
-    background: #FFF9F2;
-    margin: 20px auto;
-    width: 80%;
-    border-radius: 8px;
-}
-.footer-centered__social i {
-    font-size: 28px;
-    color: #0A66C2; /* LinkedIn blue */
-    transition: color 0.3s ease;
+.site-header .wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: 22px;
+  padding-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
+.site-header .name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--forest-deep);
+}
+
+.site-header .name em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+nav.primary-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 26px;
+  margin: 0;
+  padding: 0;
+}
+
+nav.primary-nav a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+nav.primary-nav a:hover,
+nav.primary-nav a[aria-current="page"] {
+  color: var(--forest-deep);
+  border-bottom-color: var(--gold);
+}
+
+/* ---------- Eyebrow / scientific-name label ---------- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  color: var(--moss);
+  text-transform: none;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 72px 0 56px;
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(34px, 5vw, 50px);
+  line-height: 1.08;
+  margin: 0 0 18px;
+  color: var(--forest-deep);
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero p.lede {
+  font-size: 18px;
+  color: var(--ink-soft);
+  max-width: 54ch;
+  margin: 0 0 26px;
+}
+
+.portrait-frame {
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+  border: 1px solid var(--rule);
+  background: var(--paper-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-size: 12px;
+  text-align: center;
+  font-family: var(--font-mono);
+  padding: 16px;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .hero { grid-template-columns: 1fr; }
+  .portrait-frame { width: 140px; height: 140px; }
+}
+
+/* ---------- Buttons ---------- */
+.btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block;
+  padding: 11px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 3px;
+  letter-spacing: 0.01em;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn-primary {
+  background: var(--forest-deep);
+  color: var(--paper);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(22,40,31,0.25); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--forest-deep);
+  border: 1px solid var(--forest-deep);
+}
+.btn-secondary:hover { background: rgba(34,60,47,0.06); }
+
+/* ---------- Leaf divider (signature element) ---------- */
+.leaf-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 54px 0 40px;
+  color: var(--gold-soft);
+}
+.leaf-divider::before,
+.leaf-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.leaf-divider svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+/* ---------- Section titles ---------- */
+h2.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--forest-deep);
+  margin: 0 0 6px;
+}
+
+h3.section-sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--moss);
+  margin: 0 0 4px;
+}
+
+/* ---------- Cards (Updates / Feature grid) ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 24px;
+}
+
+@media (max-width: 700px) {
+  .card-grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.35);
+  padding: 22px;
+  border-radius: 4px;
+}
+
+.card h4 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  margin: 0 0 8px;
+  color: var(--forest-deep);
+}
+
+.card p {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+
+/* ---------- Timeline (About page: education / experience) ---------- */
+.timeline-item {
+  border-left: 2px solid var(--rule);
+  padding: 2px 0 26px 22px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.timeline-item .role {
+  font-weight: 600;
+  color: var(--forest-deep);
+  font-size: 16px;
+}
+
+.timeline-item .meta {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--moss);
+  margin: 2px 0 10px;
+}
+
+.timeline-item ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.timeline-item li {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  margin-bottom: 5px;
+}
+
+/* ---------- Project list ---------- */
+.project-item {
+  display: block;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.project-item:first-child { border-top: 1px solid var(--rule); }
+
+.project-item .ptitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--forest-deep);
+  margin-bottom: 6px;
+}
+
+.project-item .pdesc {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--moss);
+  border: 1px solid var(--rule);
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-top: 8px;
+}
+
+/* ---------- Contact ---------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+@media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr; } }
+
+.contact-item {
+  border: 1px solid var(--rule);
+  padding: 20px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.35);
+}
+.contact-item .label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--moss);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.contact-item a {
+  display: block;
+  margin-top: 6px;
+  font-size: 16px;
+  color: var(--forest-deep);
+  text-decoration: none;
+  font-weight: 500;
+}
+.contact-item a:hover { color: var(--gold); }
+
+/* ---------- Blog list ---------- */
+.post-item {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.post-item:first-child { border-top: 1px solid var(--rule); }
+.post-item .pdate {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--moss);
+}
+.post-item .ptitle {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--forest-deep);
+  margin: 4px 0 6px;
+}
+
+/* ---------- Footer ---------- */
+footer.site-footer {
+  margin-top: 80px;
+  border-top: 1px solid var(--rule);
+  background: var(--forest-deep);
+  color: var(--paper);
+}
+
+footer.site-footer .wrap {
+  padding: 36px 28px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+footer.site-footer a {
+  color: var(--gold-soft);
+  text-decoration: none;
+  font-size: 14px;
+}
+footer.site-footer a:hover { color: var(--paper); }
+
+footer .foot-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+footer .copyright {
+  font-size: 12.5px;
+  color: rgba(244,242,232,0.55);
+  margin-top: 4px;
+}
+
+main { padding-bottom: 40px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn-primary:hover { transform: none; }
+}
